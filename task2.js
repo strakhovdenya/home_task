@@ -1,5 +1,5 @@
-
-const csv=require('csvtojson');
+import csv from "csvtojson"
+import fs from 'fs';
 
 const converter = csv({
     trim:true,
@@ -12,8 +12,8 @@ const converter = csv({
     header.forEach((part, index, theArray)=>theArray[index] = part.toLowerCase());
 })
 
-const readStream=require('fs').createReadStream('./csv/file.csv');
+const readStream=fs.createReadStream('./csv/file.csv');
 
-const writeStream=require('fs').createWriteStream('./txt/file.txt');
+const writeStream=fs.createWriteStream('./txt/file.txt');
 
 readStream.pipe(converter).pipe(writeStream);
